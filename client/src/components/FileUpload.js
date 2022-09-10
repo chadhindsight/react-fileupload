@@ -8,6 +8,7 @@ const FileUpload = () => {
     const [filename, setFileName] = useState('Choose File');
     const [uploadedFile, setUploadedFile] = useState({});
     const [message, setMessage] = useState('');
+    const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const onChange = e => {
         setFile(e.target.files[0]);
@@ -24,6 +25,13 @@ const FileUpload = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
+                onUploadProgress: ProgressEvent => {
+                    setUploadPercentage(parseInt(Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)))
+                    // Clear percentage after upload
+                    setTimeout(() => {
+                        setUploadPercentage(0)
+                    }, 10000);
+                }
             });
 
             const { fileName, filePath } = res.data;
