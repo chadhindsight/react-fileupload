@@ -12,7 +12,7 @@ const FileUpload = () => {
 
     const onChange = e => {
         setFile(e.target.files[0]);
-        setFile(e.target.files[0].name);
+        setFileName(e.target.files[0].name);
     }
     const onSubmit = async (e) => {
         e.preventDefailt();
