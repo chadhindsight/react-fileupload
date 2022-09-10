@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Message from './Message';
+import Progress from './Progress';
 
 const FileUpload = () => {
     const [file, setFile] = useState('');
     const [filename, setFileName] = useState('Choose File');
     const [uploadedFile, setUploadedFile] = useState({});
+    const [message, setMessage] = useState('');
 
     const onChange = e => {
         setFile(e.target.files[0]);
@@ -25,11 +28,12 @@ const FileUpload = () => {
 
             const { fileName, filePath } = res.data;
             setUploadedFile({ fileName, filePath });
+            setMessage('File Successfully Uploaded!')
         } catch (err) {
             if (err.response.status === 500) {
-                console.log("There was a problem with ther server");
+                setMessage("There was a problem with ther server");
             } else {
-                console.log(err.response.data.msg)
+                setMessage(err.response.data.msg)
             }
         }
     }
