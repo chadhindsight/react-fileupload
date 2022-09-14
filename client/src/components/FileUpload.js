@@ -5,7 +5,7 @@ import Progress from './Progress';
 
 const FileUpload = () => {
     const [file, setFile] = useState('');
-    const [filename, setFileName] = useState('Choose a File');
+    const [filename, setFileName] = useState('Choose  File');
     const [uploadedFile, setUploadedFile] = useState({});
     const [message, setMessage] = useState('');
     const [uploadPercentage, setUploadPercentage] = useState(0);
